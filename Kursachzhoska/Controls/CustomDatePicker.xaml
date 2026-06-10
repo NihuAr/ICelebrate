@@ -1,0 +1,264 @@
+<UserControl x:Class="Kursachzhoska.Controls.CustomDatePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kursachzhoska.Controls"
+             mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Input Field -->
+        <Border x:Name="MainBorder"
+                Grid.Row="0"
+                BorderBrush="{StaticResource BorderColor}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Background="{StaticResource SurfaceColor}"
+                MouseDown="Border_MouseDown"
+                Cursor="Hand">
+            <Grid>
+                <TextBlock x:Name="PlaceholderText"
+                           Text="Выберите дату"
+                           Foreground="{StaticResource TextSecondaryColor}"
+                           FontFamily="{StaticResource PrimaryFont}"
+                           FontSize="14"
+                           Margin="16,14"
+                           VerticalAlignment="Center"
+                           IsHitTestVisible="False"
+                           Panel.ZIndex="0"/>
+                
+                <TextBlock x:Name="DisplayText"
+                           Foreground="{StaticResource TextPrimaryColor}"
+                           FontFamily="{StaticResource PrimaryFont}"
+                           FontSize="14"
+                           Margin="16,14"
+                           VerticalAlignment="Center"
+                           IsHitTestVisible="False"
+                           Panel.ZIndex="1"
+                           Visibility="Collapsed"/>
+                
+                <!-- Calendar Icon -->
+                <Path Data="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"
+                      Fill="{StaticResource TextSecondaryColor}"
+                      Width="20"
+                      Height="20"
+                      Stretch="Uniform"
+                      HorizontalAlignment="Right"
+                      Margin="0,0,16,0"
+                      IsHitTestVisible="False"/>
+            </Grid>
+        </Border>
+
+        <!-- Calendar Popup -->
+        <Popup x:Name="CalendarPopup"
+               Grid.Row="1"
+               PlacementTarget="{Binding ElementName=MainBorder}"
+               Placement="Bottom"
+               StaysOpen="False"
+               AllowsTransparency="True"
+               PopupAnimation="Fade"
+               Closed="CalendarPopup_Closed">
+            <Border Background="{StaticResource SurfaceColor}"
+                    BorderBrush="{StaticResource BorderColor}"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="16"
+                    Margin="0,4,0,0">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" 
+                                    Opacity="0.2" 
+                                    BlurRadius="12" 
+                                    ShadowDepth="2"/>
+                </Border.Effect>
+                
+                <Grid Width="280">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Month/Year Header -->
+                    <Grid Grid.Row="0" Margin="0,0,0,16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="PrevMonthButton"
+                                Grid.Column="0"
+                                Content="&#xE76B;"
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="12"
+                                Width="32"
+                                Height="32"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="{StaticResource TextPrimaryColor}"
+                                Cursor="Hand"
+                                Click="PrevMonth_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        CornerRadius="6">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource HoverColor}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <TextBlock x:Name="MonthYearText"
+                                   Grid.Column="1"
+                                   Text="Январь 2024"
+                                   FontFamily="{StaticResource PrimaryFont}"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryColor}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                        <Button x:Name="NextMonthButton"
+                                Grid.Column="2"
+                                Content="&#xE76C;"
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="12"
+                                Width="32"
+                                Height="32"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="{StaticResource TextPrimaryColor}"
+                                Cursor="Hand"
+                                Click="NextMonth_Click">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        CornerRadius="6">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{StaticResource HoverColor}"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+
+                    <!-- Day Names -->
+                    <UniformGrid Grid.Row="1" 
+                                Rows="1" 
+                                Columns="7" 
+                                Margin="0,0,0,8">
+                        <TextBlock Text="Пн" FontSize="12" FontWeight="SemiBold" 
+                                  Foreground="{StaticResource TextSecondaryColor}" 
+                                  HorizontalAlignment="Center"/>
+                        <TextBlock Text="Вт" FontSize="12" FontWeight="SemiBold" 
+                                  Foreground="{StaticResource TextSecondaryColor}" 
+                                  HorizontalAlignment="Center"/>
+                        <TextBlock Text="Ср" FontSize="12" FontWeight="SemiBold" 
+                                  Foreground="{StaticResource TextSecondaryColor}" 
+                                  HorizontalAlignment="Center"/>
+                        <TextBlock Text="Чт" FontSize="12" FontWeight="SemiBold" 
+                                  Foreground="{StaticResource TextSecondaryColor}" 
+                                  HorizontalAlignment="Center"/>
+                        <TextBlock Text="Пт" FontSize="12" FontWeight="SemiBold" 
+                                  Foreground="{StaticResource TextSecondaryColor}" 
+                                  HorizontalAlignment="Center"/>
+                        <TextBlock Text="Сб" FontSize="12" FontWeight="SemiBold" 
+                                  Foreground="{StaticResource AccentColor}" 
+                                  HorizontalAlignment="Center"/>
+                        <TextBlock Text="Вс" FontSize="12" FontWeight="SemiBold" 
+                                  Foreground="{StaticResource AccentColor}" 
+                                  HorizontalAlignment="Center"/>
+                    </UniformGrid>
+
+                    <!-- Calendar Days Grid -->
+                    <ItemsControl x:Name="DaysItemsControl" Grid.Row="2">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Rows="6" Columns="7"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding Day}"
+                                        Tag="{Binding Date}"
+                                        Width="36"
+                                        Height="36"
+                                        Margin="1"
+                                        FontFamily="{StaticResource PrimaryFont}"
+                                        FontSize="14"
+                                        BorderThickness="0"
+                                        Cursor="Hand"
+                                        Click="DayButton_Click">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryColor}"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}"
+                                                                CornerRadius="6">
+                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsCurrentMonth}" Value="False">
+                                                    <Setter Property="Foreground" Value="{StaticResource TextSecondaryColor}"/>
+                                                    <Setter Property="Opacity" Value="0.4"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsToday}" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </DataTrigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource HoverColor}"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>
+

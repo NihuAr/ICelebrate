@@ -1,0 +1,328 @@
+═══════════════════════════════════════════════════════════════════════
+    ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ КАСТОМНЫХ КОМПОНЕНТОВ И ИКОНОК
+═══════════════════════════════════════════════════════════════════════
+
+1. КАСТОМНЫЙ КАЛЕНДАРЬ (CustomDatePicker)
+─────────────────────────────────────────────────────────────────────
+
+Использование в XAML:
+─────────────────────
+<local:CustomDatePicker 
+    SelectedDate="{Binding EventDate, Mode=TwoWay}"
+    Placeholder="Выберите дату события"/>
+
+Или с другим placeholder:
+─────────────────────────
+<local:CustomDatePicker 
+    SelectedDate="{Binding BirthDate, Mode=TwoWay}"
+    Placeholder="Дата рождения"/>
+
+Использование в C#:
+────────────────────
+var datePicker = new CustomDatePicker
+{
+    Placeholder = "Выберите дату",
+    SelectedDate = DateTime.Now
+};
+
+// Получить выбранную дату
+DateTime? selectedDate = datePicker.SelectedDate;
+
+
+═══════════════════════════════════════════════════════════════════════
+2. ИКОНКИ (Geometry Resources)
+─────────────────────────────────────────────────────────────────────
+
+Все иконки доступны как Geometry ресурсы и могут использоваться в Path:
+
+Пример 1 - Простая иконка:
+──────────────────────────
+<Path Data="{StaticResource HomeIcon}"
+      Fill="{StaticResource TextPrimaryColor}"
+      Width="24"
+      Height="24"
+      Stretch="Uniform"/>
+
+Пример 2 - Иконка в кнопке:
+───────────────────────────
+<Button Style="{StaticResource IconButton}">
+    <Path Data="{StaticResource SearchIcon}"
+          Fill="{StaticResource TextSecondaryColor}"
+          Width="20"
+          Height="20"
+          Stretch="Uniform"/>
+</Button>
+
+Пример 3 - Иконка с текстом:
+────────────────────────────
+<StackPanel Orientation="Horizontal">
+    <Path Data="{StaticResource CalendarIcon}"
+          Fill="{StaticResource AccentColor}"
+          Width="20"
+          Height="20"
+          Stretch="Uniform"
+          Margin="0,0,8,0"/>
+    <TextBlock Text="Выбрать дату"
+               VerticalAlignment="Center"/>
+</StackPanel>
+
+Пример 4 - Иконка в TextBox (как суффикс/префикс):
+──────────────────────────────────────────────────
+<Grid>
+    <TextBox ... />
+    <Path Data="{StaticResource EmailIcon}"
+          Fill="{StaticResource TextSecondaryColor}"
+          Width="20"
+          Height="20"
+          Stretch="Uniform"
+          HorizontalAlignment="Right"
+          Margin="0,0,16,0"
+          IsHitTestVisible="False"/>
+</Grid>
+
+
+═══════════════════════════════════════════════════════════════════════
+3. СПИСОК ДОСТУПНЫХ ИКОНОК
+─────────────────────────────────────────────────────────────────────
+
+Навигация и UI:
+────────────────
+• HomeIcon - Главная
+• SearchIcon - Поиск
+• MenuIcon - Меню (три линии)
+• MoreVertIcon - Дополнительно (три точки)
+• ArrowBackIcon - Назад
+• ArrowForwardIcon - Вперед
+• CloseIcon - Закрыть
+• CheckIcon - Галочка
+
+Пользователь:
+──────────────
+• PersonIcon - Пользователь
+• GroupIcon - Группа
+• LoginIcon - Вход
+• LogoutIcon - Выход
+• LockIcon - Замок
+
+События и календарь:
+────────────────────
+• CalendarIcon - Календарь
+• EventIcon - Событие
+• HistoryIcon - История
+• TicketIcon - Билет
+
+Взаимодействие:
+───────────────
+• FavoriteIcon - Избранное (заполненное сердце)
+• FavoriteBorderIcon - Добавить в избранное (контур сердца)
+• StarIcon - Звезда (заполненная)
+• StarBorderIcon - Звезда (контур)
+• ShareIcon - Поделиться
+• NotificationsIcon - Уведомления
+
+Действия:
+─────────
+• AddIcon - Добавить (+)
+• EditIcon - Редактировать
+• DeleteIcon - Удалить
+• RefreshIcon - Обновить
+• FilterIcon - Фильтр
+• SortIcon - Сортировка
+
+Файлы:
+──────
+• AttachFileIcon - Прикрепить файл
+• DownloadIcon - Скачать
+• UploadIcon - Загрузить
+
+Контакты:
+─────────
+• LocationIcon - Местоположение
+• EmailIcon - Email
+• PhoneIcon - Телефон
+
+Отображение:
+────────────
+• VisibilityIcon - Показать (глаз)
+• VisibilityOffIcon - Скрыть (перечеркнутый глаз)
+• DashboardIcon - Панель управления
+• ListIcon - Список
+• GridIcon - Сетка
+
+Статусы:
+────────
+• InfoIcon - Информация
+• WarningIcon - Предупреждение
+• ErrorIcon - Ошибка
+• CheckCircleIcon - Успешно (галочка в круге)
+
+Настройки:
+──────────
+• SettingsIcon - Настройки
+
+
+═══════════════════════════════════════════════════════════════════════
+4. ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ В РАЗНЫХ СЦЕНАРИЯХ
+─────────────────────────────────────────────────────────────────────
+
+Кнопка с иконкой и текстом:
+───────────────────────────
+<Button Style="{StaticResource DarkButton}">
+    <StackPanel Orientation="Horizontal">
+        <Path Data="{StaticResource AddIcon}"
+              Fill="White"
+              Width="16"
+              Height="16"
+              Stretch="Uniform"
+              Margin="0,0,8,0"/>
+        <TextBlock Text="Создать событие"/>
+    </StackPanel>
+</Button>
+
+Иконка избранного (переключаемая):
+──────────────────────────────────
+<Button Style="{StaticResource IconButton}" Click="ToggleFavorite">
+    <Path x:Name="FavoriteIcon"
+          Data="{StaticResource FavoriteBorderIcon}"
+          Fill="{StaticResource TextSecondaryColor}"
+          Width="24"
+          Height="24"
+          Stretch="Uniform"/>
+</Button>
+
+// В C# коде:
+private bool isFavorite = false;
+
+private void ToggleFavorite(object sender, RoutedEventArgs e)
+{
+    isFavorite = !isFavorite;
+    
+    if (isFavorite)
+    {
+        FavoriteIcon.Data = (Geometry)Application.Current.FindResource("FavoriteIcon");
+        FavoriteIcon.Fill = (SolidColorBrush)Application.Current.FindResource("AccentColor");
+    }
+    else
+    {
+        FavoriteIcon.Data = (Geometry)Application.Current.FindResource("FavoriteBorderIcon");
+        FavoriteIcon.Fill = (SolidColorBrush)Application.Current.FindResource("TextSecondaryColor");
+    }
+}
+
+Карточка события с иконками:
+────────────────────────────
+<Border Style="{StaticResource Card}">
+    <StackPanel>
+        <TextBlock Text="Концерт рок-группы" Style="{StaticResource H3}"/>
+        
+        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+            <Path Data="{StaticResource CalendarIcon}"
+                  Fill="{StaticResource TextSecondaryColor}"
+                  Width="16"
+                  Height="16"
+                  Stretch="Uniform"
+                  Margin="0,0,6,0"/>
+            <TextBlock Text="15 ноября 2024"
+                       Foreground="{StaticResource TextSecondaryColor}"
+                       FontSize="14"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+            <Path Data="{StaticResource LocationIcon}"
+                  Fill="{StaticResource TextSecondaryColor}"
+                  Width="16"
+                  Height="16"
+                  Stretch="Uniform"
+                  Margin="0,0,6,0"/>
+            <TextBlock Text="Москва, Red Club"
+                       Foreground="{StaticResource TextSecondaryColor}"
+                       FontSize="14"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+            <Path Data="{StaticResource GroupIcon}"
+                  Fill="{StaticResource TextSecondaryColor}"
+                  Width="16"
+                  Height="16"
+                  Stretch="Uniform"
+                  Margin="0,0,6,0"/>
+            <TextBlock Text="250 участников"
+                       Foreground="{StaticResource TextSecondaryColor}"
+                       FontSize="14"/>
+        </StackPanel>
+    </StackPanel>
+</Border>
+
+
+═══════════════════════════════════════════════════════════════════════
+5. ИНТЕГРАЦИЯ КАСТОМНОГО КАЛЕНДАРЯ В ФОРМЫ
+─────────────────────────────────────────────────────────────────────
+
+Форма создания события:
+───────────────────────
+<StackPanel Margin="24">
+    <TextBlock Text="Создание события" Style="{StaticResource H2}" Margin="0,0,0,24"/>
+    
+    <TextBlock Text="Название события" Margin="0,0,0,8"/>
+    <local:TextBoxWithPlaceholder 
+        Placeholder="Введите название"
+        Text="{Binding EventName, Mode=TwoWay}"
+        Margin="0,0,0,16"/>
+    
+    <TextBlock Text="Дата и время" Margin="0,0,0,8"/>
+    <local:CustomDatePicker 
+        SelectedDate="{Binding EventDate, Mode=TwoWay}"
+        Placeholder="Выберите дату события"
+        Margin="0,0,0,16"/>
+    
+    <TextBlock Text="Место проведения" Margin="0,0,0,8"/>
+    <local:TextBoxWithPlaceholder 
+        Placeholder="Укажите место"
+        Text="{Binding Location, Mode=TwoWay}"
+        Margin="0,0,0,24"/>
+    
+    <Button Content="Создать событие" 
+            Style="{StaticResource DarkButton}"
+            HorizontalAlignment="Left"/>
+</StackPanel>
+
+
+═══════════════════════════════════════════════════════════════════════
+6. АНИМАЦИЯ ИКОНОК (опционально)
+─────────────────────────────────────────────────────────────────────
+
+Вращение иконки обновления:
+───────────────────────────
+<Button Click="RefreshClick">
+    <Path x:Name="RefreshIconPath"
+          Data="{StaticResource RefreshIcon}"
+          Fill="{StaticResource TextPrimaryColor}"
+          Width="20"
+          Height="20"
+          Stretch="Uniform"
+          RenderTransformOrigin="0.5,0.5">
+        <Path.RenderTransform>
+            <RotateTransform x:Name="RefreshRotate" Angle="0"/>
+        </Path.RenderTransform>
+    </Path>
+</Button>
+
+// В C# коде:
+private void RefreshClick(object sender, RoutedEventArgs e)
+{
+    var animation = new DoubleAnimation
+    {
+        From = 0,
+        To = 360,
+        Duration = TimeSpan.FromSeconds(1),
+        EasingFunction = new CubicEase { EasingMode = EasingMode.EaseInOut }
+    };
+    
+    RefreshRotate.BeginAnimation(RotateTransform.AngleProperty, animation);
+    
+    // Загрузка данных...
+}
+
+
+═══════════════════════════════════════════════════════════════════════
+

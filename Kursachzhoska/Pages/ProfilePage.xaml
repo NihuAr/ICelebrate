@@ -1,0 +1,247 @@
+<Page x:Class="Kursachzhoska.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursachzhoska.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1140"
+      Background="{StaticResource BackgroundColor}">
+
+    <Grid Margin="48,32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок и переключатель аккаунта -->
+        <Grid Grid.Row="0" Margin="0,0,0,32">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Аккаунт"
+                       Style="{StaticResource H1}"
+                       VerticalAlignment="Center"/>
+
+            <!-- Переключатель Business account -->
+            <Border Grid.Column="2"
+                    Background="{StaticResource SurfaceColor}"
+                    CornerRadius="8"
+                    Padding="8"
+                    HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <Path Data="{StaticResource GroupIcon}"
+                          Fill="{StaticResource TextPrimaryColor}"
+                          Width="16"
+                          Height="16"
+                          Stretch="Uniform"
+                          Margin="8,0"
+                          VerticalAlignment="Center"/>
+                    
+                    <!-- Regular Account Button -->
+                    <Button x:Name="RegularAccountButton"
+                            Content="Обычный аккаунт"
+                            Style="{StaticResource DarkButton}"
+                            Padding="16,8"
+                            FontSize="13"
+                            Margin="0,0,4,0"
+                            Click="RegularAccountButton_Click"/>
+                    
+                    <!-- Business Account Button -->
+                    <Button x:Name="BusinessAccountButton"
+                            Content="Бизнес-аккаунт"
+                            Style="{StaticResource LightButton}"
+                            Padding="16,8"
+                            FontSize="13"
+                            Margin="4,0,0,0"
+                            Click="BusinessAccountButton_Click"/>
+                </StackPanel>
+        </Border>
+        </Grid>
+
+        <!-- Контент профиля -->
+        <Border Grid.Row="1"
+                Style="{StaticResource Card}"
+                MaxWidth="800"
+                HorizontalAlignment="Left"
+                Padding="32">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Аватар и личная информация -->
+                <Grid Grid.Row="0" Margin="0,0,0,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Аватар -->
+                    <Border x:Name="ProfileImageBorder"
+                            Grid.Column="0" 
+                            Width="80"
+                            Height="80"
+                            Background="#6366F1"
+                            CornerRadius="40"
+                            Margin="0,0,24,0">
+                        <Grid>
+                            <Image x:Name="ProfileImage"
+                                   Stretch="UniformToFill"
+                                   Visibility="Collapsed"/>
+                            <TextBlock x:Name="InitialTextBlock"
+                                       Text="K"
+                                       FontFamily="{StaticResource HeadingFont}"
+                                       FontSize="32"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Личная информация -->
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="Личная информация"
+                                   Style="{StaticResource H3}"
+                                   Margin="0,0,0,12"/>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,24,0">
+                            <TextBlock Text="ФИО"
+                                       FontFamily="{StaticResource PrimaryFont}"
+                                       FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryColor}"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock x:Name="FullNameTextBlock"
+                                       Text="Katerina Voronovskaya"
+                                       FontFamily="{StaticResource PrimaryFont}"
+                                       FontSize="14"
+                                       Foreground="{StaticResource TextPrimaryColor}"
+                                       Margin="0,0,0,12"/>
+
+                            <TextBlock Text="Дата рождения"
+                                       FontFamily="{StaticResource PrimaryFont}"
+                                       FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryColor}"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock x:Name="DateOfBirthTextBlock"
+                                       Text="03.10.2006"
+                                       FontFamily="{StaticResource PrimaryFont}"
+                                       FontSize="14"
+                                       Foreground="{StaticResource TextPrimaryColor}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1">
+                            <TextBlock Text="Контактная информация"
+                                       Style="{StaticResource H3}"
+                                       Margin="0,0,0,12"
+                                       Grid.Row="0" Grid.Column="1"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <!-- Контактная информация -->
+                <Grid Grid.Row="1" Margin="0,0,0,24">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,0,24,0">
+                        <TextBlock Text="Контактная информация"
+                                   Style="{StaticResource H3}"
+                                   Margin="0,0,0,12"/>
+                        
+                        <TextBlock Text="Эл. почта"
+                                   FontFamily="{StaticResource PrimaryFont}"
+                                   FontSize="12"
+                                   Foreground="{StaticResource TextSecondaryColor}"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock x:Name="EmailTextBlock"
+                                   Text="katieyka@gmail.com"
+                                   FontFamily="{StaticResource PrimaryFont}"
+                                                  FontSize="14"
+                                   Foreground="{StaticResource TextPrimaryColor}"
+                                   Margin="0,0,0,12"/>
+
+                        <TextBlock Text="Телефон"
+                                   FontFamily="{StaticResource PrimaryFont}"
+                                   FontSize="12"
+                                                  Foreground="{StaticResource TextSecondaryColor}"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock x:Name="PhoneTextBlock"
+                                   Text="+375 29 965 22 08"
+                                   FontFamily="{StaticResource PrimaryFont}"
+                                                  FontSize="14"
+                                   Foreground="{StaticResource TextPrimaryColor}"/>
+                        </StackPanel>
+                </Grid>
+
+                <!-- Предпочтения -->
+                <StackPanel Grid.Row="2" Margin="0,0,0,24">
+                    <TextBlock Text="Предпочтения"
+                               Style="{StaticResource H3}"
+                               Margin="0,0,0,12"/>
+
+                    <WrapPanel>
+                        <Border Style="{StaticResource CategoryTagSelected}" Margin="0,0,8,8">
+                            <TextBlock Text="Sport" Foreground="White" FontSize="13"/>
+                        </Border>
+                        <Border Style="{StaticResource CategoryTagSelected}" Margin="0,0,8,8">
+                            <TextBlock Text="IT" Foreground="White" FontSize="13"/>
+                        </Border>
+                        <Border Style="{StaticResource CategoryTag}" Margin="0,0,8,8">
+                            <TextBlock Text="Books +" FontSize="13"/>
+                        </Border>
+                        <Border Style="{StaticResource CategoryTag}" Margin="0,0,8,8">
+                            <TextBlock Text="Music +" FontSize="13"/>
+                        </Border>
+                        <Border Style="{StaticResource CategoryTag}" Margin="0,0,8,8">
+                            <TextBlock Text="Fashion +" FontSize="13"/>
+                        </Border>
+                        <Border Style="{StaticResource CategoryTag}" Margin="0,0,8,8">
+                            <TextBlock Text="Art +" FontSize="13"/>
+                        </Border>
+                        <Border Style="{StaticResource CategoryTag}" Margin="0,0,8,8">
+                            <TextBlock Text="Languages +" FontSize="13"/>
+                        </Border>
+                    </WrapPanel>
+                </StackPanel>
+
+                <!-- Кнопки действий -->
+                <StackPanel Grid.Row="3" Orientation="Horizontal">
+                    <Button Content="Редактировать"
+                            Style="{StaticResource DarkButton}"
+                            Margin="0,0,12,0"
+                            Click="EditAccountButton_Click"/>
+
+                    <Button Content="Удалить аккаунт"
+                            Style="{StaticResource LightButton}"
+                            Margin="0,0,12,0"
+                            Click="DeleteAccountButton_Click"/>
+                    
+                    <Button Content="Выйти"
+                            Style="{StaticResource LightButton}"
+                            Click="LogOutButton_Click"/>
+                </StackPanel>
+        </Grid>
+        </Border>
+    </Grid>
+</Page>

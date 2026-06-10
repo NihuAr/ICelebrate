@@ -1,0 +1,229 @@
+<Page x:Class="Kursachzhoska.Pages.EditProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursachzhoska.Pages"
+      xmlns:controls="clr-namespace:Kursachzhoska.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1140"
+      Background="{StaticResource BackgroundColor}">
+
+    <Grid Margin="48,32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0"
+                   Text="Аккаунт"
+                   Style="{StaticResource H1}"
+                   Margin="0,0,0,32"/>
+
+        <!-- Форма редактирования -->
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto">
+            <Border Style="{StaticResource Card}"
+                    MaxWidth="800"
+                    HorizontalAlignment="Left"
+                    Padding="32">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Аватар -->
+                    <StackPanel Grid.Row="0" Margin="0,0,0,24">
+                        <Grid Width="80" Height="80" HorizontalAlignment="Left" Margin="0,0,0,12">
+                            <Border x:Name="ProfileImageBorder"
+                                    Width="80"
+                                    Height="80"
+                                    Background="#6366F1"
+                                    CornerRadius="40">
+    <Grid>
+                                    <Image x:Name="ProfileImage"
+                                           Stretch="UniformToFill"
+                                           Visibility="Collapsed"/>
+                                    <TextBlock x:Name="ProfileInitial"
+                                               Text="K"
+                                               FontFamily="{StaticResource HeadingFont}"
+                                               FontSize="32"
+                                               FontWeight="Bold"
+                                               Foreground="White"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+                            <!-- Кнопка плюсика -->
+                            <Button x:Name="AddPhotoIconButton"
+                                    Content="+"
+                                    Width="28"
+                                    Height="28"
+                                    Background="{StaticResource AccentColor}"
+                                    Foreground="White"
+                                    BorderThickness="2"
+                                    BorderBrush="White"
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Cursor="Hand"
+                                    Click="UploadPhotoButton_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="14">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
+
+                        <Button x:Name="UploadPhotoButton"
+                                Content="⬆ Загрузить новое фото"
+                                Style="{StaticResource IconButton}"
+                                Foreground="{StaticResource AccentColor}"
+                                HorizontalAlignment="Left"
+                                FontSize="13"
+                                Padding="0,4"
+                                Click="UploadPhotoButton_Click"/>
+
+                        <TextBlock Text="Рекомендуемый размер 800*800px."
+                                   FontFamily="{StaticResource PrimaryFont}"
+                                   FontSize="11"
+                                   Foreground="{StaticResource TextSecondaryColor}"
+                                   Margin="0,4,0,0"/>
+                        <TextBlock Text="Допускаются JPG или PNG"
+                                   FontFamily="{StaticResource PrimaryFont}"
+                                   FontSize="11"
+                                   Foreground="{StaticResource TextSecondaryColor}"/>
+                    </StackPanel>
+
+                    <!-- Личная информация -->
+                    <StackPanel Grid.Row="1" Margin="0,0,0,24">
+                        <TextBlock Text="Личная информация"
+                                   Style="{StaticResource H3}"
+                                   Margin="0,0,0,16"/>
+
+                        <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                                <TextBlock Text="Имя"
+                                           FontFamily="{StaticResource PrimaryFont}"
+                                           FontSize="12"
+                                           Foreground="{StaticResource TextSecondaryColor}"
+                                      Margin="0,0,0,8"/>
+                                <controls:TextBoxWithPlaceholder x:Name="FirstNameTextBox"
+                                         Placeholder="Имя"
+                                         Margin="0,0,0,16"/>
+
+                                <TextBlock Text="Дата рождения"
+                                           FontFamily="{StaticResource PrimaryFont}"
+                                           FontSize="12"
+                                           Foreground="{StaticResource TextSecondaryColor}"
+                                      Margin="0,0,0,8"/>
+                                <DatePicker x:Name="DateOfBirthPicker"
+                                            Style="{StaticResource ModernDatePicker}"
+                                            Height="44"
+                                            Margin="0,0,0,16"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                                <TextBlock Text="Фамилия"
+                                           FontFamily="{StaticResource PrimaryFont}"
+                                           FontSize="12"
+                                           Foreground="{StaticResource TextSecondaryColor}"
+                                           Margin="0,0,0,8"/>
+                                <controls:TextBoxWithPlaceholder x:Name="LastNameTextBox"
+                                         Placeholder="Фамилия"
+                                         Margin="0,0,0,16"/>
+
+                                <TextBlock Text="Номер телефона"
+                                           FontFamily="{StaticResource PrimaryFont}"
+                                           FontSize="12"
+                                           Foreground="{StaticResource TextSecondaryColor}"
+                                      Margin="0,0,0,8"/>
+                                <controls:TextBoxWithPlaceholder x:Name="PhoneTextBox"
+                                         Placeholder="Номер телефона"
+                                         Margin="0,0,0,16"/>
+                        </StackPanel>
+                    </Grid>
+                    </StackPanel>
+
+                    <!-- Контактная информация -->
+                    <StackPanel Grid.Row="2" Margin="0,0,0,24">
+                        <TextBlock Text="Личная информация"
+                                   Style="{StaticResource H3}"
+                                   Margin="0,0,0,16"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                    <TextBlock Text="Эл. почта" 
+                                           FontFamily="{StaticResource PrimaryFont}"
+                                           FontSize="12"
+                                           Foreground="{StaticResource TextSecondaryColor}"
+                              Margin="0,0,0,8"/>
+                    <controls:TextBoxWithPlaceholder x:Name="EmailTextBox"
+                                         Placeholder="Эл. почта"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Пароль"
+                                           FontFamily="{StaticResource PrimaryFont}"
+                                           FontSize="12"
+                                           Foreground="{StaticResource TextSecondaryColor}"
+                              Margin="0,0,0,8"/>
+                                <PasswordBox x:Name="PasswordBox"
+                                             Style="{StaticResource ModernPasswordBox}"
+                                             Height="44"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- Предпочтения -->
+                    <StackPanel Grid.Row="3" Margin="0,0,0,24">
+                        <TextBlock Text="Предпочтения"
+                                   Style="{StaticResource H3}"
+                                   Margin="0,0,0,16"/>
+
+                        <WrapPanel x:Name="CategoriesPanel">
+                            <!-- Категории будут добавлены программно -->
+                    </WrapPanel>
+                    </StackPanel>
+
+                    <!-- Кнопки действий -->
+                    <StackPanel Grid.Row="4" Orientation="Horizontal">
+                        <Button Content="Сохранить"
+                                Style="{StaticResource DarkButton}"
+                                Margin="0,0,12,0"
+                                Click="SaveChangesButton_Click"/>
+
+                        <Button Content="Отмена"
+                                Style="{StaticResource LightButton}"
+                                Click="CancelButton_Click"/>
+                    </StackPanel>
+                    </Grid>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</Page>

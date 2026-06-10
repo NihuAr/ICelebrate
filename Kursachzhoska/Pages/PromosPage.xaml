@@ -1,0 +1,30 @@
+<Page x:Class="Kursachzhoska.Pages.PromosPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="PromosPage" Background="White">
+    <Grid>
+        <StackPanel Margin="20">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <TextBlock Text="Промокоды" FontSize="24" FontWeight="Bold" Foreground="#1A1A2E" VerticalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="Баланс: " FontSize="14" Foreground="#8B8B8B" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="BonusBalanceText" Text="0" FontSize="14" FontWeight="Bold" Foreground="#4338CA" VerticalAlignment="Center"/>
+                    <TextBlock Text=" баллов" FontSize="14" Foreground="#8B8B8B" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <Button x:Name="CatalogTabBtn" Click="CatalogTab_Click" Style="{StaticResource DarkButton}" Padding="12,8" Margin="0,0,8,0">Каталог</Button>
+                <Button x:Name="MyPromosTabBtn" Click="MyPromosTab_Click" Style="{StaticResource LightButton}" Padding="12,8">Мои промокоды</Button>
+            </StackPanel>
+
+            <ScrollViewer x:Name="CatalogScroll" VerticalScrollBarVisibility="Auto" Height="400">
+                <StackPanel x:Name="CatalogPanel"/>
+            </ScrollViewer>
+
+            <ScrollViewer x:Name="MyPromosScroll" VerticalScrollBarVisibility="Auto" Height="400" Visibility="Collapsed">
+                <StackPanel x:Name="MyPromosPanel"/>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Page>

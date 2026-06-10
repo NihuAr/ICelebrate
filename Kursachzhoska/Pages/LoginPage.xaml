@@ -1,0 +1,109 @@
+<Page x:Class="Kursachzhoska.Pages.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursachzhoska.Pages"
+      xmlns:controls="clr-namespace:Kursachzhoska.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1400"
+      Background="{StaticResource BackgroundColor}">
+
+    <Grid>
+        <!-- Центральная карточка входа -->
+        <Border Style="{StaticResource Card}"
+                MaxWidth="500"
+                MinWidth="400"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="{StaticResource CardBackground}">
+            <Grid>
+                <StackPanel Margin="40" x:Name="Step1Panel">
+                    <!-- Заголовок -->
+                    <TextBlock Text="Войти в аккаунт"
+                               Style="{StaticResource H2}"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,8"/>
+                    
+                    <!-- Подзаголовок -->
+                    <TextBlock Text="Войдите, чтобы начать работу"
+                               FontFamily="{StaticResource PrimaryFont}"
+                               FontSize="14"
+                               Foreground="{StaticResource TextSecondaryColor}"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,32"/>
+                    
+                    <!-- Поле логина -->
+                    <controls:TextBoxWithPlaceholder x:Name="LoginTextBox"
+                                                     Placeholder="Введите email"
+                                                     Margin="0,0,0,16"/>
+                    
+                    <!-- Поле пароля -->
+                    <controls:PasswordBoxWithPlaceholder x:Name="PasswordBox"
+                                                         Placeholder="Введите пароль"
+                                                         Margin="0,0,0,8"/>
+                    
+                    <!-- Забыли пароль? -->
+                    <TextBlock HorizontalAlignment="Right" Margin="0,0,0,24">
+                        <Hyperlink Click="ForgotPasswordLink_Click" TextDecorations="None">
+                            <Run Text="Забыли пароль?"
+                                 FontFamily="{StaticResource PrimaryFont}"
+                                 FontSize="13"
+                                 Foreground="{StaticResource TextSecondaryColor}"/>
+                        </Hyperlink>
+                    </TextBlock>
+                    
+                    <!-- Кнопка Sign in -->
+                    <Button Content="Далее"
+                            Style="{StaticResource DarkButton}"
+                            Click="SignInButton_Click"
+                            Margin="0,0,0,16"/>
+                    
+                    <!-- Ссылка на регистрацию -->
+                    <TextBlock HorizontalAlignment="Center">
+                        <Run Text="Нет аккаунта? "
+                             FontFamily="{StaticResource PrimaryFont}"
+                             FontSize="13"
+                             Foreground="{StaticResource TextSecondaryColor}"/>
+                        <Hyperlink Click="SignUpLink_Click"
+                                   TextDecorations="None">
+                            <Run Text="Зарегистрируйтесь"
+                                 FontFamily="{StaticResource PrimaryFont}"
+                                 FontSize="13"
+                                 Foreground="{StaticResource TextPrimaryColor}"
+                                 FontWeight="SemiBold"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Margin="40" x:Name="Step2Panel" Visibility="Collapsed">
+                    <TextBlock Text="Введите код из email"
+                               Style="{StaticResource H2}"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,8"/>
+                    <TextBlock Text="Мы отправили вам код. Если не пришел — попробуйте ещё раз."
+                               FontFamily="{StaticResource PrimaryFont}"
+                               FontSize="14"
+                               Foreground="{StaticResource TextSecondaryColor}"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,24"/>
+                    <controls:TextBoxWithPlaceholder x:Name="OtpTextBox"
+                                                     Placeholder="Код из email"
+                                                     Margin="0,0,0,16"/>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,12">
+                        <CheckBox x:Name="RememberDeviceCheckBox" Content="Запомнить устройство на 14 дней" />
+                    </StackPanel>
+                    <Button Content="Подтвердить"
+                            Style="{StaticResource DarkButton}"
+                            Click="SignInButton_Click"
+                            Margin="0,0,0,12"/>
+                    <Button Content="Назад"
+                            Style="{StaticResource LightButton}"
+                            Click="BackButton_Click"
+                            Margin="0,0,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

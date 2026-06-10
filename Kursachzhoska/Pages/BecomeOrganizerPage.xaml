@@ -1,0 +1,126 @@
+<Page x:Class="Kursachzhoska.Pages.BecomeOrganizerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursachzhoska.Pages"
+      xmlns:controls="clr-namespace:Kursachzhoska.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200"
+      Background="{StaticResource BackgroundColor}">
+
+    <Grid>
+        <!-- Navigation Panel -->
+        <Border Height="70" 
+                VerticalAlignment="Top"
+                Background="{StaticResource SurfaceColor}"
+                BorderThickness="0,0,0,1"
+                BorderBrush="{StaticResource BorderColor}">
+            <Grid Margin="40,0">
+                <Button Style="{StaticResource LightButton}"
+                       Padding="15,8"
+                       VerticalAlignment="Center"
+                       Click="BackButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource ArrowBackIcon}" Fill="{StaticResource TextPrimaryColor}" Width="14" Height="14" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Назад к профилю" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Margin="0,70,0,0" VerticalScrollBarVisibility="Auto">
+            <Border Style="{StaticResource Card}"
+                   MaxWidth="700"
+                   Margin="40,30">
+                <StackPanel TextElement.Foreground="{StaticResource TextPrimaryColor}">
+                    <StackPanel.Resources>
+                        <Style TargetType="CheckBox">
+                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryColor}"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock Text="Стать организатором" 
+                              Style="{StaticResource H1}"
+                              Margin="0,0,0,20"/>
+
+                    <TextBlock Text="Начните создавать и организовывать мероприятия!"
+                              FontSize="16"
+                              Foreground="{StaticResource TextSecondaryColor}"
+                              TextWrapping="Wrap"
+                              Margin="0,0,0,30"/>
+
+                    <!-- Company Name -->
+                    <TextBlock Text="Название компании *" 
+                              FontSize="14" 
+                              FontWeight="SemiBold"
+                              Margin="0,0,0,8"/>
+                    <controls:TextBoxWithPlaceholder x:Name="CompanyNameTextBox"
+                                                     Placeholder="Введите название компании"
+                                                     Margin="0,0,0,20"/>
+
+                    <!-- Categories -->
+                    <TextBlock Text="Категории *" 
+                              FontSize="14" 
+                              FontWeight="SemiBold"
+                              Margin="0,0,0,12"/>
+                    
+                    <TextBlock Text="Выберите категории мероприятий, которые планируете организовывать:"
+                              FontSize="14"
+                              Foreground="{StaticResource TextSecondaryColor}"
+                              TextWrapping="Wrap"
+                              Margin="0,0,0,12"/>
+                    
+                    <WrapPanel Margin="0,0,0,30">
+                        <CheckBox x:Name="BooksCheckBox" Content="Книги" Margin="0,0,15,10"/>
+                        <CheckBox x:Name="ArtCheckBox" Content="Искусство" Margin="0,0,15,10"/>
+                        <CheckBox x:Name="MusicCheckBox" Content="Музыка" Margin="0,0,15,10"/>
+                        <CheckBox x:Name="ITCheckBox" Content="IT" Margin="0,0,15,10"/>
+                        <CheckBox x:Name="SportCheckBox" Content="Спорт" Margin="0,0,15,10"/>
+                        <CheckBox x:Name="BusinessCheckBox" Content="Бизнес" Margin="0,0,15,10"/>
+                        <CheckBox x:Name="EducationCheckBox" Content="Образование" Margin="0,0,15,10"/>
+                        <CheckBox x:Name="EntertainmentCheckBox" Content="Развлечения" Margin="0,0,15,10"/>
+                    </WrapPanel>
+
+                    <!-- Information Block -->
+                    <Border Background="#FEF3C7"
+                           BorderBrush="#FCD34D"
+                           BorderThickness="1"
+                           CornerRadius="8"
+                           Padding="15"
+                           Margin="0,0,0,30">
+                        <StackPanel TextElement.Foreground="{StaticResource SidebarColor}">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                <Path Data="{StaticResource InfoIcon}" Fill="#F59E0B" Width="16" Height="16" Stretch="Uniform" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="Информация" 
+                                          FontSize="14"
+                                          FontWeight="SemiBold"
+                                          VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock Text="После подтверждения вы сможете создавать мероприятия, управлять списками гостей и получать отзывы участников."
+                                      FontSize="14"
+                                      TextWrapping="Wrap"
+                                      LineHeight="20"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Action Buttons -->
+                    <Grid>
+                        <Button Content="Отмена"
+                               Style="{StaticResource LightButton}"
+                               HorizontalAlignment="Left"
+                               Padding="30,12"
+                               Click="CancelButton_Click"/>
+
+                        <Button Content="Стать организатором"
+                               Style="{StaticResource DarkButton}"
+                               HorizontalAlignment="Right"
+                               Padding="30,12"
+                               Click="SubmitButton_Click"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</Page>
+

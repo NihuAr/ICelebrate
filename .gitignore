@@ -1,0 +1,40 @@
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+backend/.env
+
+# Node
+node_modules/
+frontend/dist/
+
+# .NET
+bin/
+obj/
+publish/
+releases/
+installer-output/
+*.exe
+!**/installer-script.iss
+
+# Django
+backend/media/
+backend/staticfiles/
+*.sqlite3
+
+# Logs & temp
+*.log
+run_log.txt
+
+# OS
+.DS_Store
+Thumbs.db

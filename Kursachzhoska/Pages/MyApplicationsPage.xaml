@@ -1,0 +1,14 @@
+<Page x:Class="Kursachzhoska.Pages.MyApplicationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="MyApplicationsPage" Background="White">
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="Мои заявки" FontSize="24" FontWeight="Bold" Foreground="#1A1A2E" Margin="0,0,0,20"/>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Height="500">
+                <StackPanel x:Name="ApplicationsPanel"/>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Page>

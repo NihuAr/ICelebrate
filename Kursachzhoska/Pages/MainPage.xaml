@@ -1,0 +1,293 @@
+<Page x:Class="Kursachzhoska.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursachzhoska.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1400"
+      Background="{StaticResource BackgroundColor}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="SidebarColumn" Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Боковое меню -->
+        <Border Grid.Column="0"
+                Background="{StaticResource SidebarColor}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Заголовок и кнопка сворачивания -->
+                <Grid Grid.Row="0" Margin="24,32,24,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Path Data="{StaticResource ICelebrateLogoIcon}" Fill="White" Width="24" Height="24" Stretch="Uniform" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="LogoText"
+                                   Text="iCelebrate"
+                                   FontFamily="{StaticResource HeadingFont}"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Foreground="White"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                    
+                    <Button x:Name="ToggleMenuButton"
+                            Grid.Column="1"
+                            Style="{StaticResource SidebarButton}"
+                            Width="30"
+                            Height="30"
+                            Padding="0"
+                            Margin="8,0,0,0"
+                            HorizontalContentAlignment="Center"
+                            Click="ToggleMenuButton_Click">
+                        <Path Data="{StaticResource MenuIcon}" Fill="White" Width="16" Height="16" Stretch="Uniform"/>
+                    </Button>
+                </Grid>
+
+                <!-- Меню навигации -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="MenuPanel" Margin="16,0">
+                    <!-- Affiche -->
+                    <Button x:Name="AfficheButton"
+                            Style="{StaticResource SidebarButton}"
+                            Click="AfficheButton_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Data="{StaticResource StarIcon}" Fill="White" Width="18" Height="18" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock x:Name="AfficheText" Grid.Column="1" Text="Афиша" FontSize="15"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- Favorites -->
+                    <Button x:Name="FavoritesButton"
+                            Style="{StaticResource SidebarButton}"
+                            Click="FavoritesButton_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Data="{StaticResource FavoriteBorderIcon}" Fill="White" Width="18" Height="18" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock x:Name="FavoritesText" Grid.Column="1" Text="Избранное" FontSize="15"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- History -->
+                    <Button x:Name="HistoryButton"
+                            Style="{StaticResource SidebarButton}"
+                            Click="HistoryButton_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Data="{StaticResource HistoryIcon}" Fill="White" Width="18" Height="18" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock x:Name="HistoryText" Grid.Column="1" Text="История" FontSize="15"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- My Applications -->
+                    <Button x:Name="ApplicationsButton"
+                            Style="{StaticResource SidebarButton}"
+                            Click="ApplicationsButton_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Data="{StaticResource FileIcon}" Fill="White" Width="18" Height="18" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock x:Name="ApplicationsText" Grid.Column="1" Text="Мои заявки" FontSize="15"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- Reviews (для всех пользователей) -->
+                    <Button x:Name="ReviewsButton"
+                            Style="{StaticResource SidebarButton}"
+                            Click="ReviewsButton_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Data="{StaticResource ReviewIcon}" Fill="White" Width="18" Height="18" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock x:Name="ReviewsText" Grid.Column="1" Text="Отзывы" FontSize="15"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- Separator для организатора -->
+                    <Border x:Name="OrganizerSeparator"
+                            Height="1"
+                            Background="{StaticResource BorderColor}"
+                            Margin="12,16"
+                            Visibility="Collapsed"/>
+
+                    <!-- Add new event (только для организатора) -->
+                    <Button x:Name="AddEventButton"
+                            Style="{StaticResource SidebarButton}"
+                            Visibility="Collapsed"
+                            Click="AddEventButton_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Data="{StaticResource AddIcon}" Fill="White" Width="18" Height="18" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock x:Name="AddEventText" Grid.Column="1" Text="Новое мероприятие" FontSize="15"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- My events (только для организатора) -->
+                    <Button x:Name="MyEventsButton"
+                            Style="{StaticResource SidebarButton}"
+                            Visibility="Collapsed"
+                            Click="MyEventsButton_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Data="{StaticResource MyEventsIcon}" Fill="White" Width="18" Height="18" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock x:Name="MyEventsText" Grid.Column="1" Text="Мои мероприятия" FontSize="15"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- Promos -->
+                    <Button x:Name="PromosButton"
+                            Style="{StaticResource SidebarButton}"
+                            Click="PromosButton_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Data="{StaticResource GiftIcon}" Fill="White" Width="18" Height="18" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock x:Name="PromosText" Grid.Column="1" Text="Промокоды" FontSize="15"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- Bonus History -->
+                    <Button x:Name="BonusButton"
+                            Style="{StaticResource SidebarButton}"
+                            Click="BonusButton_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Grid.Column="0" Data="{StaticResource CoinsIcon}" Fill="White" Width="18" Height="18" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock x:Name="BonusText" Grid.Column="1" Text="Бонусы" FontSize="15"/>
+                        </Grid>
+                    </Button>
+
+                    <!-- Separator -->
+                    <Border Height="1"
+                            Background="{StaticResource BorderColor}"
+                            Margin="12,16"/>
+
+                    <!-- Notifications -->
+                    <Button x:Name="NotificationsButton"
+                            Style="{StaticResource SidebarButton}"
+                            Click="NotificationsButton_Click">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path x:Name="NotificationIcon" Grid.Column="0" Data="{StaticResource NotificationsIcon}" Fill="White" Width="18" Height="18" Stretch="Uniform" Margin="0,0,12,0"/>
+                            <TextBlock x:Name="NotificationsText" Grid.Column="1" Text="Уведомления" FontSize="15"/>
+                        </Grid>
+                    </Button>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- Профиль пользователя -->
+                <Border x:Name="ProfileBorder"
+                        Grid.Row="2"
+                        Background="{StaticResource SurfaceColor}"
+                        Margin="16,0,16,16"
+                        CornerRadius="8"
+                        Padding="12"
+                        Cursor="Hand"
+                        MouseLeftButtonDown="ProfileButton_Click">
+                    <Grid x:Name="ProfileGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Аватар -->
+                        <Border x:Name="UserAvatar"
+                                Grid.Column="0"
+                                Width="44"
+                                Height="44"
+                                Background="#6366F1"
+                                CornerRadius="22"
+                                Margin="0,0,12,0">
+                            <Grid>
+                                <Image x:Name="UserAvatarImage"
+                                       Stretch="UniformToFill"
+                                       Visibility="Collapsed"/>
+                                <TextBlock x:Name="UserAvatarText"
+                                           Text="K"
+                                           FontFamily="{StaticResource HeadingFont}"
+                                           FontSize="18"
+                                           FontWeight="SemiBold"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Информация -->
+                        <StackPanel x:Name="UserInfoPanel"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center">
+                            <TextBlock x:Name="UserNameText"
+                                       Text="Katerina Voronovskaya"
+                                       FontFamily="{StaticResource PrimaryFont}"
+                                       FontSize="14"
+                                       FontWeight="Medium"
+                                       Foreground="{StaticResource TextPrimaryColor}"
+                                       TextTrimming="CharacterEllipsis"
+                                       Margin="0,0,0,4"/>
+                            <TextBlock x:Name="UserEmailText"
+                                       Text="katerina@gmail.com"
+                                       FontFamily="{StaticResource PrimaryFont}"
+                                       FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryColor}"
+                                       TextTrimming="CharacterEllipsis"/>
+                        </StackPanel>
+
+                        <!-- Стрелка -->
+                        <TextBlock x:Name="ProfileArrow"
+                                   Grid.Column="2"
+                                   Text="›"
+                                   FontSize="20"
+                                   Foreground="{StaticResource TextSecondaryColor}"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Контент -->
+        <Frame Grid.Column="1"
+               x:Name="ContentFrame" 
+               NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Page>

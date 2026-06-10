@@ -1,0 +1,41 @@
+<Page x:Class="Kursachzhoska.Pages.NotificationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursachzhoska.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1140"
+      Background="{StaticResource BackgroundColor}">
+
+    <Grid Margin="48,32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок и кнопка Clear all -->
+        <Grid Grid.Row="0" Margin="0,0,0,32">
+            <TextBlock Text="Уведомления"
+                       Style="{StaticResource H1}"
+                       VerticalAlignment="Center"/>
+            
+            <Button Content="Очистить всё"
+                    Style="{StaticResource IconButton}"
+                    Foreground="{StaticResource AccentColor}"
+                    HorizontalAlignment="Right"
+                    FontSize="14"
+                    Click="ClearAllButton_Click"/>
+        </Grid>
+
+        <!-- Список уведомлений -->
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <StackPanel x:Name="NotificationsPanel">
+                <!-- Уведомления будут добавлены программно -->
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
+

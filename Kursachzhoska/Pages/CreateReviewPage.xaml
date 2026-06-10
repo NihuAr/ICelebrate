@@ -1,0 +1,117 @@
+<Page x:Class="Kursachzhoska.Pages.CreateReviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursachzhoska.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1200"
+      Background="{StaticResource BackgroundColor}">
+
+    <Grid>
+        <!-- Основной контент -->
+        <ScrollViewer Margin="0,0,0,0" VerticalScrollBarVisibility="Auto">
+            <Border Style="{StaticResource Card}"
+                   MaxWidth="800"
+                   Margin="40,30">
+                <StackPanel>
+                    <TextBlock Text="Оставить отзыв" 
+                              Style="{StaticResource H1}"
+                              Margin="0,0,0,10"/>
+                    
+                    <TextBlock x:Name="EventTitleText"
+                              Text="" 
+                              Style="{StaticResource H3}"
+                              Foreground="{StaticResource TextSecondaryColor}"
+                              Margin="0,0,0,30"/>
+
+                    <!-- Оценка звездами -->
+                    <TextBlock Text="Ваша оценка *" 
+                              Style="{StaticResource H3}"
+                              Margin="0,0,0,12"/>
+                    
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
+                        <Button x:Name="Star1" Content="☆" 
+                               FontSize="40" 
+                               Background="Transparent"
+                               BorderThickness="0"
+                               Foreground="{StaticResource TextSecondaryColor}"
+                               Cursor="Hand"
+                               Click="Star_Click"
+                               Tag="1"
+                               Margin="0,0,8,0"/>
+                        <Button x:Name="Star2" Content="☆" 
+                               FontSize="40" 
+                               Background="Transparent"
+                               BorderThickness="0"
+                               Foreground="{StaticResource TextSecondaryColor}"
+                               Cursor="Hand"
+                               Click="Star_Click"
+                               Tag="2"
+                               Margin="0,0,8,0"/>
+                        <Button x:Name="Star3" Content="☆" 
+                               FontSize="40" 
+                               Background="Transparent"
+                               BorderThickness="0"
+                               Foreground="{StaticResource TextSecondaryColor}"
+                               Cursor="Hand"
+                               Click="Star_Click"
+                               Tag="3"
+                               Margin="0,0,8,0"/>
+                        <Button x:Name="Star4" Content="☆" 
+                               FontSize="40" 
+                               Background="Transparent"
+                               BorderThickness="0"
+                               Foreground="{StaticResource TextSecondaryColor}"
+                               Cursor="Hand"
+                               Click="Star_Click"
+                               Tag="4"
+                               Margin="0,0,8,0"/>
+                        <Button x:Name="Star5" Content="☆" 
+                               FontSize="40" 
+                               Background="Transparent"
+                               BorderThickness="0"
+                               Foreground="{StaticResource TextSecondaryColor}"
+                               Cursor="Hand"
+                               Click="Star_Click"
+                               Tag="5"/>
+                    </StackPanel>
+
+                    <!-- Текст отзыва -->
+                    <TextBlock Text="Ваш отзыв *" 
+                              Style="{StaticResource H3}"
+                              Margin="0,0,0,12"/>
+                    <TextBox x:Name="CommentTextBox"
+                            FontFamily="{StaticResource PrimaryFont}"
+                            FontSize="14"
+                            Padding="16,14"
+                            BorderThickness="1"
+                            BorderBrush="{StaticResource BorderColor}"
+                            Background="{StaticResource SurfaceColor}"
+                            Foreground="{StaticResource TextPrimaryColor}"
+                            Height="200"
+                            TextWrapping="Wrap"
+                            AcceptsReturn="True"
+                            VerticalScrollBarVisibility="Auto"
+                            Margin="0,0,0,40"/>
+
+                    <!-- Кнопки действий -->
+                    <Grid>
+                        <Button Content="Отмена"
+                               Style="{StaticResource LightButton}"
+                               HorizontalAlignment="Left"
+                               Padding="30,12"
+                               Click="CancelButton_Click"/>
+
+                        <Button Content="Отправить отзыв"
+                               Style="{StaticResource DarkButton}"
+                               HorizontalAlignment="Right"
+                               Padding="30,12"
+                               Click="SubmitButton_Click"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+</Page>
+
