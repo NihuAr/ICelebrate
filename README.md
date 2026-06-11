@@ -10,6 +10,14 @@
 
 ## 🚀 Быстрый старт
 
+### Запуск через Docker (рекомендуется для демо)
+```bash
+docker compose up --build
+```
+Откроется на `http://localhost:3000`
+
+**Подробная пошаговая инструкция:** [ZAPUSK-DOCKER.md](ZAPUSK-DOCKER.md)
+
 ### Веб-версия (для всех)
 ```bash
 cd frontend
