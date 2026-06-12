@@ -22,6 +22,8 @@ bin/
 obj/
 publish/
 releases/
+desktop-release/
+ICelebrate-dlya-zakazchika.zip
 installer-output/
 *.exe
 !**/installer-script.iss
